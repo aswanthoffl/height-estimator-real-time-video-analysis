@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jump Detection Live</title>
+</head>
+<body>
+    <h1>Live Jump Detection</h1>
+
+    <img src="{{ url_for('video_feed') }}" width="640" height="480">
+
+    <br><br>
+    <form action="/stop">
+        <button type="submit">Stop & Show Jump Summary</button>
+    </form>
+
+    {% if data %}
+    <h2>Jump Summary</h2>
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>Jump #</th>
+            <th>Height (m)</th>
+            <th>Air Time (s)</th>
+        </tr>
+        {% for jump in data %}
+        <tr>
+            <td>{{ jump.count }}</td>
+            <td>{{ jump.height }}</td>
+            <td>{{ jump.air_time }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>
